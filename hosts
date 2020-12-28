@@ -1,0 +1,4 @@
+
+[local]
+#127.0.0.1
+localhost   ansible_host=127.0.0.1  retry_files_enabled=False   connection=local

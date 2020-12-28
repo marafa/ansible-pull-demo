@@ -1,0 +1,11 @@
+# this IS the ansible-pull playbook
+#
+- hosts: all
+
+  tasks:
+  - name: Leave evidence in syslog
+    syslogger:
+      msg: "Hello from ansible"
+      priority: "info"
+      facility: "daemon"
+      log_pid: true
