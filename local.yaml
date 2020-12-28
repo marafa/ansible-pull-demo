@@ -10,9 +10,9 @@
       facility: "daemon"
       log_pid: true
 
-  - name: Leave evidence in a file
+  - name: Leave evidence in file /tmp/ansible-pull.txt
     copy:
       dest: "/tmp/ansible-pull.txt"
       content: |
         ansible-pull evidence
-        tiger
+        {{ ansible_date_time.date }}-{{ ansible_date_time.time }}
