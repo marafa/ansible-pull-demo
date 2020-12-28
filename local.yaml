@@ -9,3 +9,10 @@
       priority: "info"
       facility: "daemon"
       log_pid: true
+
+  - name: Leave evidence in a file
+    copy:
+      dest: "/tmp/ansible-pull.txt"
+      content: |
+        ansible-pull evidence
+        tiger
