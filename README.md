@@ -8,4 +8,5 @@ demo of ansible-pull on AWS
 1. proof of concept that we can automate the EC2 ordering process and have it bootstrapped by ansible-pull
 
 ## Using
+- pre-requirements: ansible and git
 - modify the variable called `git_repo` in group_vars/all.yaml to point to your repo
