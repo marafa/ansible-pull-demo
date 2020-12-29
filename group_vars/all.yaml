@@ -1,1 +1,2 @@
 git_repo: https://github.com/marafa/ansible-pull-demo.git
+gir_dir: /var/lib/ansible/local

@@ -1,1 +1,1 @@
-*/1 * * * * root ansible-pull --directory /var/lib/ansible/local --url {{ git_repo }} --only-if-changed -i hosts
+*/1 * * * * root ansible-pull --directory {{ git_dir }} --url {{ git_repo }} --only-if-changed -i {{ git_dir }}/hosts
