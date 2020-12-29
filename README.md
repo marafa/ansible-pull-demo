@@ -9,4 +9,4 @@ demo of ansible-pull on AWS
 
 ## Using
 - pre-requirements: ansible and git
-- modify the variable called `git_repo` in group_vars/all.yaml to point to your repo
+- modify group_vars/all.yaml to point to your liking. it includes variables like `git_repo` and `git_dir` 
