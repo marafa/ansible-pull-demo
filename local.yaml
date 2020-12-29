@@ -16,3 +16,5 @@
       content: |
         ansible-pull evidence
         {{ ansible_date_time.date }}-{{ ansible_date_time.time }}
+
+  - include: crontab

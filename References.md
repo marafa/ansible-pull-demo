@@ -1,0 +1,2 @@
+- https://medium.com/splunkuserdeveloperadministrator/using-ansible-pull-in-ansible-projects-ac04466643e8
+- https://github.com/ansible/ansible-examples/blob/master/language_features/ansible_pull.yml
