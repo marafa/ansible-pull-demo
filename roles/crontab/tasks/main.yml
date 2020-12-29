@@ -1,8 +1,8 @@
 - name: Create crontab entry to clone/pull git repository
-   template: 
-     src: templates/etc_cron.d_ansible-pull.j2 
-     dest: /etc/cron.d/ansible-pull 
-     owner: root 
-     group: root
-     mode: 0644
+  template: 
+    src: templates/etc_cron.d_ansible-pull.j2 
+    dest: /etc/cron.d/ansible-pull 
+    owner: root 
+    group: root
+    mode: 0644
 
