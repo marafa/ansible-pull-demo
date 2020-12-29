@@ -1,1 +1,2 @@
-*/1 * * * * root ansible-pull -d /var/lib/ansible/local -U {{ git_repo }}
+*/1 * * * * root ansible-pull --directory /var/lib/ansible/local --url {{ git_repo }} --only-if-changed           
+~                                                                       
