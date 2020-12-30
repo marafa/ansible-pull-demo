@@ -10,3 +10,4 @@ demo of ansible-pull on AWS
 ## Using
 - pre-requirements: ansible and git
 - modify group_vars/all.yaml to point to your liking. it includes variables like `git_repo` and `git_dir` 
+- set up a new automation user in github and give this new user "write" access thru. see this github issue for [more info](https://github.com/jollygoodcode/jollygoodcode.github.io/issues/11)
