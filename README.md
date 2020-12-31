@@ -4,7 +4,7 @@ demo of ansible-pull on AWS
 ## objectives
 - [x] proof of concept that `ansible-pull` works between AWS EC2 instances and github
 - [x] proof of concept that `ansible-pull` will continuously update the EC2 instance via crontab
-- [ ] proof of concept that a freshly deployed EC2 instance can be bootstrapped by ansible-pull
+- [x] proof of concept that a freshly deployed EC2 instance can be bootstrapped by ansible-pull
 - [ ] proof of concept that we can automate the EC2 ordering process and have it bootstrapped by ansible-pull
 
 ## Scenario 1 - already deployed EC2 instance
@@ -13,6 +13,9 @@ demo of ansible-pull on AWS
 
 ## Scenario 2 - freshly deployed EC2 instance
 - pre-requirements from `Scenario 1` plus the `aws cli` client
+- when launching an EC2 instance, copy and paste the contents of user-data.sh into `Advanced Details` "As text"ß
+
+## Scenario 3 - private repo
 - save a SecureString parameter in `AWS Systems Manager / Parameter Store`. This demo uses the name `ansible-pull/git_token`
 - an IAM role attached to the EC2 instance with the `AmazonSSMManagedInstanceCore` policy
 
