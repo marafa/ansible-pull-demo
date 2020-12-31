@@ -19,6 +19,14 @@ then
 	&& unzip awscliv2.zip \
 	&& sudo ./aws/install
 fi
+if grep -qi amazon /etc/system-release # <- it says centos
+then
+	installer=yum
+	yum -y install unzip \
+	&& curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+	&& unzip awscliv2.zip \
+	&& sudo ./aws/install
+fi
 
 $installer -y install git
 $installer -y install ansible
