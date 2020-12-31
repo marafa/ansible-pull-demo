@@ -32,4 +32,4 @@ git_token=$(aws ssm get-parameters --names $parameter_name --with-decryption --r
 # and finally run ansible-pull for the very first time
 [ -z $git_token ] || git_token=$git_token
 
-sudo ansible-pull --directory /var/lib/ansible/local --url https://github.com/marafa/ansible-pull-demo.git --inventory /var/lib/ansible/local/hosts -l 127.0.0.1
+ansible-pull --directory /var/lib/ansible/local --url https://github.com/marafa/ansible-pull-demo.git --inventory /var/lib/ansible/local/hosts -l 127.0.0.1
