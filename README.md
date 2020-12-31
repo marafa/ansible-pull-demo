@@ -10,11 +10,11 @@ demo of ansible-pull on AWS
 ## Scenario 1 - already deployed EC2 instance
 - pre-requirements: `ansible` and `git`
 - modify group_vars/all.yaml to your liking. it includes variables like `git_repo` and `git_dir`
-- save a SecureString parameter in `AWS Systems Manager / Parameter Store`. This demo uses the name `ansible-pull/git_token`
-- an IAM role attached to the EC2 instance with the `AmazonSSMManagedInstanceCore` policy
 
 ## Scenario 2 - freshly deployed EC2 instance
 - pre-requirements from `Scenario 1` plus the `aws cli` client
+- save a SecureString parameter in `AWS Systems Manager / Parameter Store`. This demo uses the name `ansible-pull/git_token`
+- an IAM role attached to the EC2 instance with the `AmazonSSMManagedInstanceCore` policy
 
 ## TODO
 - proof of concept that `ansible-pull` can work on a private repo

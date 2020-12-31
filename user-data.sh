@@ -1,5 +1,7 @@
 #!/bin/sh
 
+installer=yum
+
 # install dependencies
 # this is how we will retrieve the git token from parameter store
 if grep -qi centos /etc/system-release # <- it says centos
@@ -28,9 +30,6 @@ parameter_name='/ansible-pull/git_token' # the parameter store was saved as a Se
 git_token=$(aws ssm get-parameters --names $parameter_name --with-decryption --region $region --query "Parameters[].Value"| sed -e 's/\[//g' -e s'/\]//g' -e 's/"//g')
 
 # and finally run ansible-pull for the very first time
-if ! [ -z $git_token ]
-then
-	sudo ansible-pull --directory /var/lib/ansible/local --url https://github.com/marafa/ansible-pull-demo.git --only-if-changed --inventory /var/lib/ansible/local/hosts -l 127.0.0.1
-else
-	sudo ansible-pull --directory /var/lib/ansible/local --url https://github.com/marafa/ansible-pull-demo.git --only-if-changed --inventory /var/lib/ansible/local/hosts -l 127.0.0.1
-fi
+[ -z $git_token ] || git_token=$git_token
+
+sudo ansible-pull --directory /var/lib/ansible/local --url https://github.com/marafa/ansible-pull-demo.git --inventory /var/lib/ansible/local/hosts -l 127.0.0.1
