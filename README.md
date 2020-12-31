@@ -8,11 +8,11 @@ demo of ansible-pull on AWS
 - [ ] proof of concept that we can automate the EC2 ordering process and have it bootstrapped by ansible-pull
 
 ## Scenario 1 - already deployed EC2 instance
-- pre-requirements: `ansible` and `git`
+- pre-requisites: `ansible` and `git`
 - modify group_vars/all.yaml to your liking. it includes variables like `git_repo` and `git_dir`
 
 ## Scenario 2 - freshly deployed EC2 instance
-- pre-requirements from `Scenario 1` plus the `aws cli` client
+- pre-requisites from `Scenario 1` plus the `aws cli` client
 - when launching an EC2 instance, copy and paste the contents of user-data.sh into `Advanced Details` "As text"ß
 
 ## Scenario 3 - use terraform to deploy and bootstrap an EC2 instance
