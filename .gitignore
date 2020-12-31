@@ -1,5 +1,6 @@
 secrets
 .terraform*
+generated/
 *.bak
 *.retry
 terraform.tfstate*
