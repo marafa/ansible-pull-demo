@@ -15,7 +15,10 @@ demo of ansible-pull on AWS
 - pre-requirements from `Scenario 1` plus the `aws cli` client
 - when launching an EC2 instance, copy and paste the contents of user-data.sh into `Advanced Details` "As text"ß
 
-## Scenario 3 - private repo
+## Scenario 3 - use terraform to deploy and bootstrap an EC2 instance
+- modify `terraform/vars.tf` and update the key_name and aws_profile to fit your environment
+
+## Scenario 4 - private repo
 - save a SecureString parameter in `AWS Systems Manager / Parameter Store`. This demo uses the name `ansible-pull/git_token`
 - an IAM role attached to the EC2 instance with the `AmazonSSMManagedInstanceCore` policy
 
