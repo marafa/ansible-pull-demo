@@ -13,7 +13,7 @@ data "aws_ami" "amazon-linux-2" {
   }
 }
 
-resource "aws_instance" "example" {
+resource "aws_instance" "ansible-pull-demo" {
   ami           = data.aws_ami.amazon-linux-2.id
   instance_type = "t2.micro"
 
@@ -25,7 +25,7 @@ resource "aws_instance" "example" {
 
   # install dependencies
   # this is how we will retrieve the git token from parameter store
-  if grep -qi centos /etc/system-release # <- it says centos
+  if grep -qi centos /etc/system-release # <it says centos
   then
   	installer=yum
   	yum -y install unzip \
@@ -33,7 +33,7 @@ resource "aws_instance" "example" {
   	&& unzip awscliv2.zip \
   	&& sudo ./aws/install
   fi
-  if grep -qi ubuntu /etc/system-release # <- it says ubuntu
+  if grep -qi ubuntu /etc/system-release # <it says ubuntu
   then
   	installer=apt-get
   	curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
@@ -59,5 +59,42 @@ resource "aws_instance" "example" {
 
   tags = {
     Name = "ansible-pull demo"
+  }
+}
+
+resource "aws_default_security_group" "default" {
+
+  ingress = [
+    {
+      cidr_blocks = [
+        "0.0.0.0/0",
+      ]
+      description      = ""
+      from_port        = 22
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      protocol         = "tcp"
+      security_groups  = []
+      self             = false
+      to_port          = 22
+    },
+    {
+      cidr_blocks      = []
+      description      = ""
+      from_port        = 0
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      protocol         = "-1"
+      security_groups  = []
+      self             = true
+      to_port          = 0
+    }
+  ]
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
