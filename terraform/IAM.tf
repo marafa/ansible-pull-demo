@@ -23,3 +23,14 @@ POLICY
     Name = "ansible-pull-demo-SSM_Access"
   }
 }
+
+resource "aws_iam_instance_profile" "ansible-pull-demo-SSM_Access" {
+  name = "ansible-pull-demo-SSM_Access"
+  path = "/"
+  role = "ansible-pull-demo-SSM_Access"
+}
+
+resource "aws_iam_role_policy_attachment" "ansible-pull-demo-SSM_Access_AmazonSSMManagedInstanceCore" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  role       = "ansible-pull-demo-SSM_Access"
+}

@@ -27,7 +27,7 @@ the `local.yml` playbook will run 2 tests to leave evidence for later verificati
 
 ## Scenario 4 - private repo
 - save a SecureString parameter in `AWS Systems Manager / Parameter Store`. This demo uses the name `ansible-pull/git_token`
-- an IAM role attached to the EC2 instance with the `AmazonSSMManagedInstanceCore` policy
+- an IAM role attached to the EC2 instance with the `AmazonSSMManagedInstanceCore` policy. This is automatically taken care of by terraform
 
 ## TODO
 - proof of concept that `ansible-pull` can work on a private repo

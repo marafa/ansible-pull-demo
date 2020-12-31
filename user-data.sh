@@ -28,6 +28,7 @@ $installer -y install ansible
 region=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/.$//')
 parameter_name='/ansible-pull/git_token' # the parameter store was saved as a SecureString
 git_token=$(aws ssm get-parameters --names $parameter_name --with-decryption --region $region --query "Parameters[].Value"| sed -e 's/\[//g' -e s'/\]//g' -e 's/"//g')
+echo git_token= $git_token
 
 # and finally run ansible-pull for the very first time
 [ -z $git_token ] || git_token=$git_token
