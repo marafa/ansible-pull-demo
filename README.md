@@ -8,11 +8,12 @@ demo of ansible-pull on AWS
 1. proof of concept that we can automate the EC2 ordering process and have it bootstrapped by ansible-pull
 
 ## Using
-- pre-requirements: ansible and git
-- modify group_vars/all.yaml to point to your liking. it includes variables like `git_repo` and `git_dir`
-- set up a new automation user in github and give this new user "write" access thru. see this github issue for [more info](https://github.com/jollygoodcode/jollygoodcode.github.io/issues/11)
+- pre-requirements: aws cli, ansible and git
+- modify group_vars/all.yaml to your liking. it includes variables like `git_repo` and `git_dir`
 - save a SecureString parameter in `AWS Systems Manager / Parameter Store`. This demo uses the name `ansible-pull/git_token`
+- an IAM role attached to the EC2 instance with the `AmazonSSMManagedInstanceCore` policy
 
 ## TODO
 - proof of concept that ansible-pull can work on a private repo
 - proof of concept that ansible-pull can call an ansible playbook (since ansible-pull itself is limited)
+- private repo: - set up a new automation user in github and give this new user "write" access thru your organisation. see this github issue for [more info](https://github.com/jollygoodcode/jollygoodcode.github.io/issues/11)
