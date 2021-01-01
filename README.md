@@ -46,6 +46,3 @@ the `local.yml` playbook will run 2 tests to leave evidence for later verificati
 - [New GitHub Organization API and deppbot](https://github.com/jollygoodcode/jollygoodcode.github.io/issues/11)
 - [ansible-pull with private Github Repository](https://medium.com/planetarynetworks/ansible-pull-with-private-github-repository-d147fdf6f60b)
 - [Running commands on your Linux instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
-
-### References needing review
-- [Running Ansible Playbooks using EC2 Systems Manager Run Command and State Manager](https://aws.amazon.com/blogs/mt/running-ansible-playbooks-using-ec2-systems-manager-run-command-and-state-manager/)
