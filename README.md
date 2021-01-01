@@ -43,7 +43,7 @@ the `local.yml` playbook will run 2 tests to leave evidence for later verificati
 # References
 - [Using Ansible Pull In Ansible Projects](https://medium.com/splunkuserdeveloperadministrator/using-ansible-pull-in-ansible-projects-ac04466643e8)
 - [ansible-pull examples](https://github.com/ansible/ansible-examples/blob/master/language_features/ansible_pull.yml)
-- https://github.com/jollygoodcode/jollygoodcode.github.io/issues/11
+- [New GitHub Organization API and deppbot](https://github.com/jollygoodcode/jollygoodcode.github.io/issues/11)
 - [ansible-pull with private Github Repository](https://medium.com/planetarynetworks/ansible-pull-with-private-github-repository-d147fdf6f60b)
 - [Running commands on your Linux instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
 
