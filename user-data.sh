@@ -39,9 +39,14 @@ git_token=$(aws ssm get-parameters --names $parameter_name --with-decryption --r
 echo git_token= $git_token
 
 # and finally run ansible-pull for the very first time
-[ -z $git_token ] || git_token=$git_token
+if ! [ -z $git_token ]
+then
+    git_cmd=$git_token:x-oauth-basic@github.com
+else
+    git_cmd=github.com
+fi
 
-# example command to emulate
-# TOKEN=1234 ansible-pull -U https://$TOKEN:x-oauth-basic@github.com/org/repo -d /opt/org/repo
+# lets pull evertying together:
+# NOTE: the directory should be the same as in the crontab
 
-ansible-pull --directory /var/lib/ansible/local --url https://github.com/marafa/ansible-pull-demo.git --inventory /var/lib/ansible/local/hosts -l 127.0.0.1
+ansible-pull --directory /var/lib/ansible/local --url https://$git_cmd/marafa/ansible-pull-demo.git --inventory /var/lib/ansible/local/hosts --limit 127.0.0.1
