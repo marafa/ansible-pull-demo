@@ -41,4 +41,7 @@ echo git_token= $git_token
 # and finally run ansible-pull for the very first time
 [ -z $git_token ] || git_token=$git_token
 
+# example command to emulate
+# TOKEN=1234 ansible-pull -U https://$TOKEN:x-oauth-basic@github.com/org/repo -d /opt/org/repo
+
 ansible-pull --directory /var/lib/ansible/local --url https://github.com/marafa/ansible-pull-demo.git --inventory /var/lib/ansible/local/hosts -l 127.0.0.1
