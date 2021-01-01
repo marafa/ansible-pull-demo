@@ -32,13 +32,13 @@ the `local.yml` playbook will run 2 tests to leave evidence for later verificati
 ## TODO
 - proof of concept that `ansible-pull` can work on a private repo
 - private repo: - set up a new automation user in github and give this new user "write" access thru your organisation. see this github issue for [more info](https://github.com/jollygoodcode/jollygoodcode.github.io/issues/11)
-- properly exclude AWS hostname
+- properly exclude AWS hostname 
 
 ## Caveats
 - `ansible-pull` has limitations
 - playbook must be called `local.yaml`
 - include is for files not proper roles, although we can shoe horn it in
-- includes AWS hostname even when the host file is provided
+- includes AWS hostname even when the host file is provided - the work around seems to be to add the AWS hostnames. however, this means that `ansible-pull` will work 3 times and I am willing to suffer the errors rather than do that
 
 # References
 - [Using Ansible Pull In Ansible Projects](https://medium.com/splunkuserdeveloperadministrator/using-ansible-pull-in-ansible-projects-ac04466643e8)
