@@ -47,4 +47,4 @@ fi
 # lets pull everything together:
 # NOTE: the directory should be the same as in the crontab
 
-ansible-pull --directory $directory --url https://$git_cmd/$org/ansible-pull-POC.git --inventory $directory/hosts --limit 127.0.0.1
+ansible-pull --directory $directory --url https://$git_cmd/$org/ansible-pull-POC.git --inventory $directory/hosts --limit 127.0.0. --extra-vars region=$region

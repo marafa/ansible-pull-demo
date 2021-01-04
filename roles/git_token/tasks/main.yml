@@ -1,0 +1,22 @@
+- name: install dependencies for AWS SSM use
+  yum:
+    name: "{{ item }}"
+  with_items:
+    - python2-botocore
+    - python2-boto3
+
+- name: lookup ssm parameter store in the current region
+  set_fact:
+    git_token: "{{ lookup('aws_ssm', '/ansible-pull/git_token', region=region) }}"
+
+- name: set git_prefix when git_token is undefined
+  set_fact:
+    git_prefix: "github.com"
+    when: ( git_token is not defined ) and (git_token | length == 0 )
+
+- name: set git_prefix when git_token is defined
+  set_fact:
+    git_prefix: "{{git_token}}:x-oauth-basic@github.com"
+    when: ( git_token is defined ) and (git_token | length > 0)
+
+- debug: msg="git_prefix={{git_prefix}}"

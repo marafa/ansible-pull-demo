@@ -1,4 +1,4 @@
 # point to your private repo
-git_repo: https://github.com/marafa/ansible-pull-demo.git
+git_repo: marafa/ansible-pull-demo.git
 # ansible-pull will make the directory if this doesnt exist
 git_dir: /var/lib/ansible/local
