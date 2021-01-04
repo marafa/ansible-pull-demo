@@ -13,7 +13,7 @@ the `local.yml` playbook will run 2 tests to leave evidence for later verificati
 1. /tmp/ansible-pull.txt will be populated with the date and time it last ran
 1. syslog will be utilised to record an entry "Hello from ansible"
 
-## Use case
+## Use cases
 ### Scenario 1 - already deployed EC2 instance
 - pre-requisites: `ansible` and `git`
 - modify group_vars/all.yaml to your liking. it includes variables like `git_repo` and `git_dir`
