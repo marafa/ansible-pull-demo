@@ -11,7 +11,7 @@ demo of ansible-pull on AWS
 ### Verification
 the `local.yml` playbook will run 2 ansible tasks as tests to leave evidence for manual verification later
 1. /tmp/ansible-pull.txt will be populated with the date and time it last ran
-1. syslog will be utilised to record an entry "Hello from ansible"
+1. syslog will be utilised to record an entry "Hello from ansible-pull"
 
 ## Use cases
 ### Scenario 1 - already deployed EC2 instance
@@ -19,9 +19,9 @@ the `local.yml` playbook will run 2 ansible tasks as tests to leave evidence for
 - modify group_vars/all.yaml to your liking. it includes variables like `git_repo` and `git_dir`
 
 ### Scenario 2 - freshly deployed EC2 instance
-- when launching an EC2 instance, copy and paste the contents of user-data.sh into `Advanced Details` \ "As text" text-box (step 3. Configure Instance).
+- when launching an EC2 instance, copy and paste the contents of user-data.sh into `Advanced Details` \ "As text" text-box (step "3. Configure Instance").
 - make small changes to the github repo
-- check syslog and `/tmp/ansible-pull.txt`
+- check syslog and `/tmp/ansible-pull.txt` after a minute or 2
 
 ### Scenario 3 - use terraform to deploy and bootstrap an EC2 instance
 - switch to the terraform directory
@@ -30,12 +30,18 @@ the `local.yml` playbook will run 2 ansible tasks as tests to leave evidence for
 
 ### Scenario 4 - private repo
 - save a SecureString parameter in `AWS Systems Manager / Parameter Store`. This demo uses the name `ansible-pull/git_token`
+	`aws ssm put-parameter --name /ansible-pull/git_token --value "Securre_STRING" --type SecureString`
 - an IAM role attached to the EC2 instance with the `AmazonSSMManagedInstanceCore` policy. This is automatically taken care of by terraform
 
 ## TODO
 - proof of concept that `ansible-pull` can work on a private repo
 - private repo: - set up a new automation user in github and give this new user "write" access thru your organisation. see this github issue for [more info](https://github.com/jollygoodcode/jollygoodcode.github.io/issues/11)
-- properly exclude AWS hostname 
+- properly exclude AWS hostname
+- checkout `remote-exec` in terraform
+- save the GitHub repo URL in one central location instead of the current 3 different locations:
+  - user-data.sh
+  - /terraform/EC2-instances.tf
+  - group_vars/all.yaml
 
 ## Caveats
 - `ansible-pull` has limitations

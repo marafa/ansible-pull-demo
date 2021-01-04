@@ -5,7 +5,7 @@
   tasks:
   - name: Leave evidence in syslog
     syslogger:
-      msg: "Hello from ansible"
+      msg: "Hello from ansible-pull"
       priority: "info"
       facility: "daemon"
       log_pid: true
