@@ -6,7 +6,7 @@ demo of ansible-pull on AWS
 - [x] proof of concept that `ansible-pull` will continuously update the EC2 instance via crontab
 - [x] proof of concept that a freshly deployed EC2 instance can be bootstrapped by ansible-pull
 - [x] proof of concept that we can automate the EC2 ordering process and have it bootstrapped by ansible-pull
-- [ ] proof of concept that we can do all of the above from a private repo
+- [x] proof of concept that we can do all of the above from a private repo
 
 ### Verification
 the `local.yml` playbook will run 2 ansible tasks as tests to leave evidence for manual verification later
@@ -34,10 +34,8 @@ the `local.yml` playbook will run 2 ansible tasks as tests to leave evidence for
 - an IAM role attached to the EC2 instance with the `AmazonSSMManagedInstanceCore` policy. This is automatically taken care of by terraform
 
 ## TODO
-- proof of concept that `ansible-pull` can work on a private repo
 - private repo: - set up a new automation user in github and give this new user "write" access thru your organisation. see this github issue for [more info](https://github.com/jollygoodcode/jollygoodcode.github.io/issues/11)
 - properly exclude AWS hostname
-- checkout `remote-exec` in terraform
 - save the GitHub repo URL in one central location instead of the current 3 different locations:
   - user-data.sh
   - /terraform/EC2-instances.tf
@@ -46,8 +44,8 @@ the `local.yml` playbook will run 2 ansible tasks as tests to leave evidence for
 ## Caveats
 - `ansible-pull` has limitations
 - playbook must be called `local.yaml`
-- include is for files not proper roles, although we can shoe horn it in
-- includes AWS hostname even when the host file is provided - the work around seems to be to add the AWS hostnames. however, this means that `ansible-pull` will work 3 times and I am willing to suffer the errors rather than do that
+- include command is for files not proper roles, although we can shoe horn it in
+- somehow runs against AWS hostname even when the host file is provided - the work around seems to be to add the AWS hostnames. however, this means that `ansible-pull` will work 3 times and I am willing to suffer the errors rather than do that
 
 # References
 - [Using Ansible Pull In Ansible Projects](https://medium.com/splunkuserdeveloperadministrator/using-ansible-pull-in-ansible-projects-ac04466643e8)
