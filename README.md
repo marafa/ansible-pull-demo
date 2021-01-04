@@ -20,6 +20,8 @@ the `local.yml` playbook will run 2 tests to leave evidence for later verificati
 
 ### Scenario 2 - freshly deployed EC2 instance
 - when launching an EC2 instance, copy and paste the contents of user-data.sh into `Advanced Details` \ "As text" text-box (step 3. Configure Instance).
+- make small changes to the github repo
+- check syslog and `/tmp/ansible-pull.txt`
 
 ### Scenario 3 - use terraform to deploy and bootstrap an EC2 instance
 - switch to the terraform directory
