@@ -1,5 +1,6 @@
 # ansible-pull-demo
-demo of ansible-pull on AWS
+This is a demo of ansible-pull on AWS. You will need to install `terraform` locally on your machine if you want to implement the full demo. The bare minimum is the script called `user-data.sh`
+
 
 ## objectives
 - [x] proof of concept that `ansible-pull` works between AWS EC2 instances and github
