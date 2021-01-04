@@ -31,15 +31,14 @@ the `local.yml` playbook will run 2 ansible tasks as tests to leave evidence for
 
 ### Scenario 4 - private repo
 - save a SecureString parameter in `AWS Systems Manager / Parameter Store`. This demo uses the name `ansible-pull/git_token`
-	`aws ssm put-parameter --name /ansible-pull/git_token --value "Securre_STRING" --type SecureString`
-- an IAM role attached to the EC2 instance with the `AmazonSSMManagedInstanceCore` policy. This is automatically taken care of by terraform
+	`aws ssm put-parameter --name /ansible-pull/git_token --value "Secure_STRING" --type SecureString`
+- an IAM role attached to the EC2 instance with the `AmazonSSMManagedInstanceCore` policy. This is automatically taken care of by `terraform`
 
 ## TODO
 - private repo: - set up a new automation user in github and give this new user "write" access thru your organisation. see this github issue for [more info](https://github.com/jollygoodcode/jollygoodcode.github.io/issues/11)
 - properly exclude AWS hostname
-- save the GitHub repo URL in one central location instead of the current 3 different locations:
+- save the GitHub repo URL in one central location instead of the current 2 different locations:
   - user-data.sh
-  - /terraform/EC2-instances.tf
   - group_vars/all.yaml
 
 ## Caveats
