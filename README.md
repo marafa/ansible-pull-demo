@@ -9,7 +9,7 @@ demo of ansible-pull on AWS
 - [ ] proof of concept that we can do all of the above from a private repo
 
 ### Verification
-the `local.yml` playbook will run 2 ansible tasks as tests to leave evidence for later verification
+the `local.yml` playbook will run 2 ansible tasks as tests to leave evidence for manual verification later
 1. /tmp/ansible-pull.txt will be populated with the date and time it last ran
 1. syslog will be utilised to record an entry "Hello from ansible"
 
