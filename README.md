@@ -1,5 +1,5 @@
 # ansible-pull-demo
-This is a demo of ansible-pull on AWS. You will need to install `terraform` locally on your machine if you want to implement the full demo. The bare minimum is the script called `user-data.sh`
+This is a demo of [ansible-pull](https://docs.ansible.com/ansible/latest/cli/ansible-pull.html) on AWS. You will need to install [terraform](https://www.terraform.io/) locally on your machine if you want to implement the full demo. The bare minimum is the script called `user-data.sh`
 
 
 ## objectives
