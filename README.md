@@ -18,6 +18,7 @@ the `local.yml` playbook will run 2 ansible tasks as tests to leave evidence for
 ### Scenario 1 - already deployed EC2 instance
 - pre-requisites: `ansible` and `git`
 - modify group_vars/all.yaml to your liking. it includes variables like `git_repo` and `git_dir`
+- run `user-data.sh` on your EC2 instance
 
 ### Scenario 2 - freshly deployed EC2 instance
 - when launching an EC2 instance, copy and paste the contents of user-data.sh into `Advanced Details` \ "As text" text-box (step "3. Configure Instance").
