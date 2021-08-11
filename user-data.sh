@@ -1,9 +1,18 @@
 #!/bin/sh
 
+<<<<<<< HEAD
+installer=yum # default installer
+parameter_name='/ansible-pull/git_token' # the AWS>SSM>Parameter store was saved as a SecureString
+org="marafa"
+directory=/var/lib/ansible/local
+||||||| fa4dab9
+installer=yum
+=======
 installer=yum # default installer
 parameter_name='/ansible-pull/git_token' # the parameter store was saved as a SecureString
 org="marafa"
 directory=/var/lib/ansible/local
+>>>>>>> fd7c03d50bd1c3b9cf5dd429afd47caa85fe172d
 
 # install dependencies
 # this is how we will retrieve the git token from parameter store
@@ -16,7 +25,7 @@ if grep -qi ubuntu /etc/system-release # <- it says ubuntu
 then
 	installer=apt-get
 fi
-if grep -qi amazon /etc/system-release # <- it says centos
+if grep -qi amazon /etc/system-release # <- it says amazon
 then
 	installer=yum
         [ -f /usr/bin/zip ] ||  yum -y install unzip
