@@ -25,7 +25,7 @@ the `local.yml` playbook will run 2 ansible tasks as tests to leave evidence for
 - make small changes to the github repo
 - check syslog and `/tmp/ansible-pull.txt` after a minute or 2
 
-### Scenario 3 - use terraform to deploy and bootstrap an EC2 instance
+### Scenario 3 - use `terraform` to deploy and bootstrap an EC2 instance
 - switch to the terraform directory
 - modify `terraform/vars.tf` and update the key_name and aws_profile to fit your environment
 - run `terraform apply` and answer yes to deploy the aws resources
