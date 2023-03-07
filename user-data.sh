@@ -1,55 +1,54 @@
-#!/bin/sh
+#!/bin/bash
 
-installer=yum # default installer
-parameter_name='/ansible-pull/git_token' # the AWS>SSM>Parameter store was saved as a SecureString
 org="marafa"
-directory=/var/lib/ansible/local
+repo="ansible-pull-POC"
+region="us-west-2" # region for ssm parameter store can be one central location
+parameter_name='/ansible-pull/git_token' # the AWS>SSM>Parameter store was previously saved as a SecureString
 
-[ $(whoami) == root ] && export HOME=/root || {
-    echo "ERROR: Not running as root"
-    exit 1
-    }
+if grep -qiE "centos|amazon" /etc/os-release # <- it says centos OR amazon
+then
+    echo "INFO: $0 RPM based OS detected"
+    installer=yum
+    [[ $(command -v aws) ]] && yum -y update aws-cli
+fi
 
-# install dependencies
-# this is how we will retrieve the git token from parameter store
-if grep -qi centos /etc/system-release # <- it says centos
+if grep -qi ubuntu /etc/os-release # <- it says ubuntu
 then
-	installer=yum
-        [ -f /usr/bin/zip ] ||  yum -y install unzip
-fi
-if grep -qi ubuntu /etc/system-release # <- it says ubuntu
-then
-	installer=apt-get
-fi
-if grep -qi amazon /etc/system-release # <- it says amazon
-then
-	installer=yum
-        [ -f /usr/bin/zip ] ||  yum -y install unzip
+    echo "INFO: $0 APT based OS detected"
+    installer="apt-get"
+    apt-get update
 fi
 
 # install necessary programs
-[ -f /usr/local/bin/aws ] || {
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-&& unzip awscliv2.zip \
-&& sudo ./aws/install
-}
-[ -f /usr/bin/git ] || $installer -y install git
-[ -f /usr/bin/ansible ] || $installer -y install ansible
-[ $? -eq 0 ] || amazon-linux-extras install ansible2
-
-# lets get the token from the parameter store
-region=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/.$//')
-git_token=$(aws ssm get-parameters --names $parameter_name --with-decryption --region $region --query "Parameters[].Value" --output text| sed -e 's/\[//g' -e s'/\]//g' -e 's/"//g')
-
-# and finally run ansible-pull for the very first time
-if ! [ -z $git_token ]
+[ -f /usr/bin/unzip ] ||  ${installer} -y install unzip
+[ -f /usr/bin/sudo ] ||  ${installer} -y install sudo
+if ! [[ (  -f /usr/bin/aws ) || ( -f /usr/local/bin/aws ) ]]
 then
-    git_cmd=$git_token:x-oauth-basic@github.com
-else
-    git_cmd=github.com
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip" \
+    && cd /tmp/ \
+    && unzip awscliv2.zip \
+    && sudo ./aws/install \
+    && rm -rf aws*
 fi
+[ -f /usr/bin/git ] || ${installer} -y install git
+[ -f /usr/bin/ansible ] || ${installer} -y install ansible
+[ $? -eq 0 ] || {
+    [[ $(command -v amazon-linux-extras) ]] && amazon-linux-extras install -y ansible2 || {
+        # are we on the original amazon linux ami?
+        yum -y install epel-release && \
+        yum-config-manager --enable epel && \
+        yum -y install ansible python26-boto python26-botocore
+            [ $? -eq 0 ] || {
+                echo "ERROR! Unknown reason!"
+                exit 13
+            }
+        }
+    }
 
-# lets pull everything together:
-# NOTE: the directory should be the same as in the crontab
+# get the token from the parameter store
+git_token=$(aws ssm get-parameters --names ${parameter_name} --with-decryption --region "${region}" --query "Parameters[].Value" --output text| sed -e 's/\[//g' -e s'/\]//g' -e 's/"//g') # jq may not be installed but sed definitely is
 
-ansible-pull --directory $directory --url https://$git_cmd/$org/ansible-pull-POC.git --inventory $directory/hosts --limit 127.0.0. --extra-vars region=$region
+# download and run the local.sh script
+curl -H "Authorization: token ${git_token}" \
+  -H "Accept: application/vnd.github.v3.raw" \
+  -L "https://api.github.com/repos/${org}/${repo}/contents/cheers.sh" | bash
